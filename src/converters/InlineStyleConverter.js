@@ -3,14 +3,18 @@ import { AbstractConverter } from "./AbstractConverter"
 export class InlineStyleConverter extends AbstractConverter {
 
     convertLine(line) {
-        // if bold
+        if (line.includes('**')) {
+            line = this.#convertToBold(line)
+        }
 
-        // if italic
+        if (line.includes('*')) {
+            line = this.#convertToItalic(line)
+        }
     }
 
 
-    #convertInlineStyle(line) {
+    #convertToBold(line) {}
 
-    }
+    #convertToItalic(line) {}
 
 }
