@@ -2,12 +2,10 @@ import { AbstractConverter } from "./AbstractConverter";
 
 export class HeadingConverter extends AbstractConverter {
 
-    convert(input) {
-        // return '<h1>Hello 1DV610!</h1>'
+    convert(inputText) {
+        const lines = inputText.split('\n')
 
-        const lines = input.split('\n') // split into lines
-
-        const converted = lines.map(line => { // map the lines and run conversion
+        const converted = lines.map(line => {
             if (line.startsWith('#')) {
                 return this.#convertHeading(line)
             }
@@ -15,25 +13,20 @@ export class HeadingConverter extends AbstractConverter {
             return line
         })
 
-        return converted.join('\n') // Reassemble to string
-
+        return converted.join('\n')
     }
 
     #convertHeading(line) {
-        let numberOfHashChars = 0
-
-
-        for (let i = 0; i < line.length; i++) { // Count number of hashes (heading level 1-6)
+        let headingLevel = 0
+        for (let i = 0; i < line.length; i++) {
             if (line[i] === '#') {
-                numberOfHashChars++
+                headingLevel++
             }
         }
 
-        const headingTextContent = line.substring(numberOfHashChars + 1) // Get the text after the hashes
+        const headingTextContent = line.substring(headingLevel + 1)
 
-        return `<h${numberOfHashChars}>${headingTextContent}</h${numberOfHashChars}>`
-
-
+        return `<h${headingLevel}>${headingTextContent}</h${headingLevel}>`
 
     }
 }
