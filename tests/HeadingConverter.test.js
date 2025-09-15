@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { MarkupConverter } from "../src/core/MarkupConverter";
+import { HeadingConverter } from "../src/converters/HeadingConverter";
 
-describe('MarkupConverter', () => {
+describe('HeadingConverter', () => {
     it('should convert markdown heading to html heading', () => {
-        const converter = new MarkupConverter()
+        const converter = new HeadingConverter()
         const result = converter.convert('# Hello 1DV610!')
         expect(result).toBe('<h1>Hello 1DV610!</h1>')
     })
 
     it('should convert the headings in a multi-line markdown text', () => {
-        const converter = new MarkupConverter()
+        const converter = new HeadingConverter()
         const input = `# Hello 1DV610!
 ## This is a MarkupConverter.
 ### It converts between Markup formats!
