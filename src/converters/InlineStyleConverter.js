@@ -4,19 +4,39 @@ export class InlineStyleConverter extends AbstractConverter {
 
     convertLine(line) {
         if (line.includes('**')) {
-            line = this.#convertToBold(line)
+            line = this.#convertBold(line)
         }
 
         if (line.includes('*')) {
-            line = this.#convertToItalic(line)
+            line = this.#convertItalic(line)
+        }
+
+        if (line.includes('~~')) {
+            line = this.#convertStrikethrough(line)
         }
 
         return line
     }
 
 
-    #convertToBold(line) { }
+    #convertBold(line) {
+        // Find index of first and second **
+        // convert substring with textcontent to html, ** textcontent ** ---> <strong>textcontent</strong>
+        // Search again until no more **.
+        // How to handle that lists uses *?
+    }
 
-    #convertToItalic(line) { }
+    #convertItalic(line) {
+        // Find index of first and second *
+        // convert substring with textcontent to html, * textcontent * ---> <em>textcontent</em>
+        // Search again until no more *.
+        // How to handle that lists uses *?
+    }
+
+    #convertStrikethrough(line) {
+        // Find index of first and second ~~
+        // convert substring with textcontent to html, ~~ textcontent ~~ ---> <del>textcontent</del>
+        // Search again until no more ~~.
+    }
 
 }
