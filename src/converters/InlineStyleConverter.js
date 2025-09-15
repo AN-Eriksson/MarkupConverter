@@ -26,6 +26,11 @@ export class InlineStyleConverter extends AbstractConverter {
             const firstOccurance = resultingLine.indexOf('**')
             const secondOccurrence = resultingLine.indexOf('**', firstOccurance + 2)
 
+            // If there is no second occurance, stop the loop.
+            if (secondOccurrence === -1) {
+                break
+            }
+
             const textToBold = resultingLine.substring(firstOccurance + 2, secondOccurrence)
 
             const textBefore = resultingLine.substring(0, firstOccurance)
