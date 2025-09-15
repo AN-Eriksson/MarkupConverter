@@ -20,17 +20,21 @@ export class InlineStyleConverter extends AbstractConverter {
 
 
     #convertBold(line) {
-        // Find index of first and second **
-        const firstOccurance = line.indexOf('**')
-        const secondOccurrence = line.indexOf('**', firstOccurance + 2)
+        let resultingLine = line
 
-        const textToBold = line.substring(firstOccurance + 2, secondOccurrence)
+        while (resultingLine.includes('**')) {
+            const firstOccurance = resultingLine.indexOf('**')
+            const secondOccurrence = resultingLine.indexOf('**', firstOccurance + 2)
 
-        return `<strong>${textToBold}</strong>`
+            const textToBold = resultingLine.substring(firstOccurance + 2, secondOccurrence)
 
-        // convert substring with textcontent to html, ** textcontent ** ---> <strong>textcontent</strong>
-        // Search again until no more **.
-        // How to handle that lists uses *?
+            const textBefore = resultingLine.substring(0, firstOccurance)
+            const textAfter = resultingLine.substring(secondOccurrence + 2)
+
+            resultingLine = textBefore + `<strong>${textToBold}</strong>` + textAfter
+        }
+
+        return resultingLine
     }
 
     #convertItalic(line) {
