@@ -10,11 +10,13 @@ export class InlineStyleConverter extends AbstractConverter {
         if (line.includes('*')) {
             line = this.#convertToItalic(line)
         }
+
+        return line
     }
 
 
-    #convertToBold(line) {}
+    #convertToBold(line) { }
 
-    #convertToItalic(line) {}
+    #convertToItalic(line) { }
 
 }
