@@ -2,11 +2,15 @@ import { AbstractConverter } from "./AbstractConverter"
 
 export class InlineStyleConverter extends AbstractConverter {
 
-    convert(inputText) {}
+    convertLine(line) {
+        // if bold
+
+        // if italic
+    }
 
 
     #convertInlineStyle(line) {
-        
+
     }
 
 }

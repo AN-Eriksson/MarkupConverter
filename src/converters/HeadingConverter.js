@@ -1,20 +1,14 @@
 import { AbstractConverter } from "./AbstractConverter";
 
 export class HeadingConverter extends AbstractConverter {
+    convertLine(line) {
+        if (line.startsWith('#')) {
+            return this.#convertHeading(line)
+        }
 
-    convert(inputText) {
-        const lines = inputText.split('\n')
-
-        const converted = lines.map(line => {
-            if (line.startsWith('#')) {
-                return this.#convertHeading(line)
-            }
-
-            return line
-        })
-
-        return converted.join('\n')
+        return line
     }
+
 
     #convertHeading(line) {
         let headingLevel = 0
