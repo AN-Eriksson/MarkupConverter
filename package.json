@@ -3,15 +3,43 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
+  "description": "A JavaScript library for converting markup formats",
+  "keywords": [
+    "markdown",
+    "html",
+    "converter",
+    "markup",
+    "parser",
+    "text-processing"
+  ],
+  "author": "Andreas Eriksson <ae225ak@student.lnu.se>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AN-Eriksson/MarkupConverter"
+  },
+  "homepage": "https://github.com/AN-Eriksson/MarkupConverter#readme",
+  "bugs": {
+    "url": "https://github.com/AN-Eriksson/MarkupConverter/issues"
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "exports": {
+    ".": "./index.js"
+  },
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm test"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
     "vitest": "^3.2.4"
   }
