@@ -40,6 +40,21 @@ src/
 tests/                          # Test files
 ```
 
+### Adding New Converters
+To add a new converter:
+
+1. Create `src/converters/YourConverter.js` extending `AbstractConverter`
+2. Implement the `convertLine()` method
+3. Add unit tests in `tests/YourConverter.test.js`
+4. Add the converter to `MarkupConverter.js` constructor
+5. Update integration tests
+
+### Code Style
+- Use ES6+ features
+- Follow existing naming conventions
+- Add JSDoc comments for public methods
+- Ensure test coverage for new features
+
 ### Testing
 - Write unit tests for individual converters
 - Write integration tests for full pipeline
