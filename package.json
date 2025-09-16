@@ -36,9 +36,9 @@
   },
   "scripts": {
     "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "prepublishOnly": "npm test"
+    "test:unit": "vitest run tests/*Converter.test.js",
+    "test:integration": "vitest run tests/MarkupConverter.test.js",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "vitest": "^3.2.4"
