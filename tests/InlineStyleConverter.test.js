@@ -26,5 +26,11 @@ describe('InlineStyleConverter', () => {
         expect(result).toBe('<em>Hello 1DV610!</em> This test checks that <em>all</em> italic text is converted')
     })
 
+    it('should convert both bold and italic text in a line', () => {
+        const converter = new InlineStyleConverter()
+        const result = converter.convert('**Hello 1DV610!** This test checks that *both* italic and bold text is converted')
+        expect(result).toBe('<strong>Hello 1DV610!</strong> This test checks that <em>both</em> italic and bold text is converted')
+    })
+
 
 })
