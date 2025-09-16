@@ -31,22 +31,38 @@ export class InlineStyleConverter extends AbstractConverter {
                 break
             }
 
-            const textToBold = resultingLine.substring(firstOccurance + 2, secondOccurrence)
+            const textContent = resultingLine.substring(firstOccurance + 2, secondOccurrence)
 
             const textBefore = resultingLine.substring(0, firstOccurance)
             const textAfter = resultingLine.substring(secondOccurrence + 2)
 
-            resultingLine = textBefore + `<strong>${textToBold}</strong>` + textAfter
+            resultingLine = textBefore + `<strong>${textContent}</strong>` + textAfter
         }
 
         return resultingLine
     }
 
     #convertItalic(line) {
-        // Find index of first and second *
-        // convert substring with textcontent to html, * textcontent * ---> <em>textcontent</em>
-        // Search again until no more *.
-        // How to handle that lists uses *?
+        let resultingLine = line
+
+        while (resultingLine.includes('*')) {
+            const firstOccurance = resultingLine.indexOf('*')
+            const secondOccurrence = resultingLine.indexOf('*', firstOccurance + 1)
+
+            // If there is no second occurance, stop the loop.
+            if (secondOccurrence === -1) {
+                break
+            }
+
+            const textContent = resultingLine.substring(firstOccurance + 1, secondOccurrence)
+
+            const textBefore = resultingLine.substring(0, firstOccurance)
+            const textAfter = resultingLine.substring(secondOccurrence + 1)
+
+            resultingLine = textBefore + `<em>${textContent}</em>` + textAfter
+        }
+
+        return resultingLine
     }
 
     #convertStrikethrough(line) {
