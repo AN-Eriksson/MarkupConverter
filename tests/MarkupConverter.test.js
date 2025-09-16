@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { MarkupConverter } from '../src/core/MarkupConverter'
 
 describe('MarkupConverter', () => {
-    it('should convert the test document correctly', () => {
+    it('should convert the test document containing headers, paragraphs, inline styles and lists correctly', () => {
         const converter = new MarkupConverter()
         const input = `# Main Title
 
