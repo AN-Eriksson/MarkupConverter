@@ -11,9 +11,9 @@ export class InlineStyleConverter extends AbstractConverter {
             line = this.#convertItalic(line)
         }
 
-        // if (line.includes('~~')) {
-        //     line = this.#convertStrikethrough(line)
-        // }
+        if (line.includes('~~')) {
+            line = this.#convertStrikethrough(line)
+        }
 
         return line
     }
@@ -66,9 +66,26 @@ export class InlineStyleConverter extends AbstractConverter {
     }
 
     #convertStrikethrough(line) {
-        // Find index of first and second ~~
-        // convert substring with textcontent to html, ~~ textcontent ~~ ---> <del>textcontent</del>
-        // Search again until no more ~~.
+        let resultingLine = line
+
+        while (resultingLine.includes('~~')) {
+            const firstOccurance = resultingLine.indexOf('~~')
+            const secondOccurrence = resultingLine.indexOf('~~', firstOccurance + 2)
+
+            // If there is no second occurance, stop the loop.
+            if (secondOccurrence === -1) {
+                break
+            }
+
+            const textContent = resultingLine.substring(firstOccurance + 2, secondOccurrence)
+
+            const textBefore = resultingLine.substring(0, firstOccurance)
+            const textAfter = resultingLine.substring(secondOccurrence + 2)
+
+            resultingLine = textBefore + `<del>${textContent}</del>` + textAfter
+        }
+
+        return resultingLine
     }
 
 }
