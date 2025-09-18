@@ -1,7 +1,6 @@
 import { AbstractConverter } from "./AbstractConverter";
 
 export class ParagraphConverter extends AbstractConverter {
-
     convert(text) {
         const textBlocks = text.split('\n\n')
 
@@ -11,7 +10,6 @@ export class ParagraphConverter extends AbstractConverter {
             const linesWithoutHeadings = lines.filter(line => {
                 return !this.#isHeading(line)
             })
-
 
             if (linesWithoutHeadings.length > 0) {
                 const textContent = linesWithoutHeadings.join('\n')
@@ -24,7 +22,6 @@ export class ParagraphConverter extends AbstractConverter {
         return taggedBlocks.join('\n\n')
     }
 
-
     #isHeading(line) {
         if (line.startsWith('<h') || line.startsWith('#')) {
             return true
@@ -32,5 +29,4 @@ export class ParagraphConverter extends AbstractConverter {
 
         return false
     }
-
 }

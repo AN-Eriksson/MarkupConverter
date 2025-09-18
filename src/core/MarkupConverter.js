@@ -1,5 +1,6 @@
 import { HeadingConverter } from "../converters/HeadingConverter"
 import { InlineStyleConverter } from "../converters/InlineStyleConverter"
+import { ParagraphConverter } from "../converters/ParagraphConverter"
 
 export class MarkupConverter {
     #converters
@@ -7,6 +8,7 @@ export class MarkupConverter {
     constructor() {
         this.#converters = new Map([
             ['heading', new HeadingConverter()],
+            ['paragraph', new ParagraphConverter],
             ['inlineStyle', new InlineStyleConverter()]
         ])
     }

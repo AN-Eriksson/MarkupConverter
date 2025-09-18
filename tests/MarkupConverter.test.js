@@ -7,10 +7,10 @@ import { MarkupConverter } from '../src/core/MarkupConverter'
  * 
  * Note: Individual converters have their own unit tests in separate files
  */
-describe.skip('MarkupConverter - Integration tests', () => {
-    it('should convert the test document containing headers, paragraphs, inline styles and lists correctly', () => {
-        const converter = new MarkupConverter()
-        const input = `# Main Title
+describe('MarkupConverter - Integration tests', () => {
+  it.skip('should convert the test document containing headers, paragraphs, inline styles and lists correctly', () => {
+    const converter = new MarkupConverter()
+    const input = `# Main Title
 
 ## Subsection
 
@@ -31,7 +31,7 @@ Some introduction text.
 
 This text has **bold**, *italic*, and ~~strikethrough~~ words.`
 
-        const expected = `<h1>Main Title</h1>
+    const expected = `<h1>Main Title</h1>
 <h2>Subsection</h2>
 <p>Some introduction text.</p>
 <h3>Smaller Header</h3>
@@ -52,9 +52,44 @@ This text has **bold**, *italic*, and ~~strikethrough~~ words.`
 <h2>Formatting Example</h2>
 <p>This text has <strong>bold</strong>, <em>italic</em>, and <del>strikethrough</del> words.</p>`
 
-        const result = converter.convert(input)
-        expect(result).toBe(expected)
-    })
+    const result = converter.convert(input)
+    expect(result).toBe(expected)
+  })
+
+
+  it('should convert the test document containing headers, paragraphs, and inline styles correctly', () => {
+    const converter = new MarkupConverter()
+    const input = `# Main Title
+
+## Subsection
+
+Some introduction text.
+
+### Smaller Header
+
+Another paragraph here.
+
+## Formatting Example
+
+This text has **bold**, *italic*, and ~~strikethrough~~ words.`
+
+    const expected = `<h1>Main Title</h1>
+
+<h2>Subsection</h2>
+
+<p>Some introduction text.</p>
+
+<h3>Smaller Header</h3>
+
+<p>Another paragraph here.</p>
+
+<h2>Formatting Example</h2>
+
+<p>This text has <strong>bold</strong>, <em>italic</em>, and <del>strikethrough</del> words.</p>`
+
+    const result = converter.convert(input)
+    expect(result).toBe(expected)
+  })
 })
 
 
