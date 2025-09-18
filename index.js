@@ -1,1 +1,4 @@
 export { MarkupConverter } from './src/core/MarkupConverter.js'
+export { HeadingConverter } from './src/converters/HeadingConverter.js'
+export { InlineStyleConverter } from './src/converters/InlineStyleConverter.js'
+export { ParagraphConverter } from './src/converters/ParagraphConverter.js'
