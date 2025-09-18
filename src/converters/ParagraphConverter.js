@@ -13,8 +13,12 @@ export class ParagraphConverter extends AbstractConverter {
             })
 
 
-            const textContent = linesWithoutHeadings.join('\n')
-            return `<p>${textContent}</p>`
+            if (linesWithoutHeadings.length > 0) {
+                const textContent = linesWithoutHeadings.join('\n')
+                return `<p>${textContent}</p>`
+            }
+
+            return block
         })
 
         return taggedBlocks.join('\n\n')
