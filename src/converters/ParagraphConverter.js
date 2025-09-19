@@ -2,7 +2,7 @@ import { AbstractConverter } from "./AbstractConverter";
 
 export class ParagraphConverter extends AbstractConverter {
     /**
-     * Converts text blocks into HTML paragraphs while preserving headings
+     * Converts text blocks into HTML paragraphs while preserving headings and lists
      * Overrides AbstractConverter.convert() to handle block-level paragraph processing
      * 
      * @param {string} text - The input text to convert
