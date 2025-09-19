@@ -8,24 +8,30 @@ export class ListConverter extends AbstractConverter {
         console.log('Text blocks:')
         console.log(textBlocks)
 
-        // Ordered lists starts with 1. 
-        // Unordered lists with - 
-        console.log(textBlocks[0].startsWith('1. '))
-        console.log(textBlocks[0].startsWith('- '))
+        const taggedBlocks = textBlocks.map(block => {
 
-        const listElements = textBlocks.map(block => {
-            const lines = block.split('\n')
+            if (this.#isUnorderedList(block)) {
+                return this.#convertUnorderedList(block)
+            }
 
-            console.log('Lines:')
-            console.log(lines)
+            if (this.#isOrderedList(block)) {
+                return this.#convertOrderedList(block)
+            }
+
+            return block
         })
+
+        return taggedBlocks.join('\n\n')
     }
 
-    #isOrderedList(line) {
-
+    #isOrderedList(textBlock) {
+        const firstLine = textBlock.split(('\n'))[0]
+        return firstLine.trim().match(/^\d+\.\s/)
     }
 
-    #isUnorderedList(line) {
+    #isUnorderedList(textBlock) {
+        const firstLine = textBlock.split('\n')[0]
+        return firstLine.startsWith('- ')
 
     }
 }
