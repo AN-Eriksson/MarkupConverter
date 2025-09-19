@@ -11,9 +11,9 @@ export class ListConverter extends AbstractConverter {
                 return this.#convertUnorderedList(block)
             }
 
-            // if (this.#isOrderedList(block)) {
-            //     return this.#convertOrderedList(block)
-            // }
+            if (this.#isOrderedList(block)) {
+                return this.#convertOrderedList(block)
+            }
 
             return block
         })
@@ -40,11 +40,19 @@ export class ListConverter extends AbstractConverter {
         })
 
         const joinedList = listItems.join('\n')
-
-        console.log(joinedList)
-        console.log(`<ul>\n${joinedList}\n</ul>`)
-
         return `<ul>\n${joinedList}\n</ul>`
+    }
+
+    #convertOrderedList(block) {
+        const lines = block.split('\n')
+
+        const listItems = lines.map(line => {
+            const itemTextContent = line.substring(3)
+            return `<li>${itemTextContent}</li>`
+        })
+
+        const joinedList = listItems.join('\n')
+        return `<ol>\n${joinedList}\n</ol>`
     }
 
 

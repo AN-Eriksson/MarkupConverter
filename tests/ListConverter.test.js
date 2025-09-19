@@ -18,7 +18,7 @@ describe('ListConverter', () => {
         expect(result).toBe(expected)
     })
 
-    it.skip('should convert a simple ordered list', () => {
+    it('should convert a simple ordered list', () => {
         const converter = new ListConverter()
         const input = `1. First item
 2. Second item
