@@ -92,6 +92,104 @@ This text has **bold**, *italic*, and ~~strikethrough~~ words.`
     const result = converter.convert(input)
     expect(result).toBe(expected)
   })
+
+  it('should convert a complete markdown document with all supported features', () => {
+    const converter = new MarkupConverter()
+    const input = `# Lorem Ipsum Dolor Sit Amet
+
+Lorem ipsum dolor sit amet, consectetur **adipiscing** elit. Sed do *eiusmod* tempor incididunt ut labore.
+
+## Consectetur Adipiscing Elit
+
+Ut enim ad minim veniam, quis ~~nostrud~~ exercitation ullamco laboris. Nisi ut aliquip ex ea commodo:
+
+### Duis Aute Irure
+
+Excepteur sint occaecat cupidatat non proident:
+
+- **Sunt** in culpa qui officia
+- *Deserunt* mollit anim id est
+- Laborum et ~~dolore~~ magna aliqua
+
+### Sed Ut Perspiciatis
+
+Unde omnis iste natus error sit voluptatem:
+
+1. Accusantium **doloremque** laudantium
+2. Totam rem *aperiam* eaque ipsa
+3. Quae ab illo ~~inventore~~ veritatis
+4. Et quasi **architecto** beatae vitae
+
+## Neque Porro Quisquam
+
+Est qui dolorem ipsum quia ~~dolor~~ sit amet. Consectetur adipisci velit:
+
+- Sed quia *non* numquam eius
+- **Modi** tempora incidunt ut labore
+- Dolore ~~magnam~~ aliquam quaerat
+
+### Ut Enim Minima
+
+Veniam quis nostrum *exercitationem* ullam corporis. Suscipit **laboriosam** nisi ut aliquid.
+
+## Quis Autem Vel
+
+Eum iure reprehenderit qui in ea ~~voluptate~~ velit esse. Quam nihil molestiae **consequatur**!
+
+Fugiat quo *voluptas* nulla pariatur? 🌟`
+
+    const expected = `<h1>Lorem Ipsum Dolor Sit Amet</h1>
+
+<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing</strong> elit. Sed do <em>eiusmod</em> tempor incididunt ut labore.</p>
+
+<h2>Consectetur Adipiscing Elit</h2>
+
+<p>Ut enim ad minim veniam, quis <del>nostrud</del> exercitation ullamco laboris. Nisi ut aliquip ex ea commodo:</p>
+
+<h3>Duis Aute Irure</h3>
+
+<p>Excepteur sint occaecat cupidatat non proident:</p>
+
+<ul>
+<li><strong>Sunt</strong> in culpa qui officia</li>
+<li><em>Deserunt</em> mollit anim id est</li>
+<li>Laborum et <del>dolore</del> magna aliqua</li>
+</ul>
+
+<h3>Sed Ut Perspiciatis</h3>
+
+<p>Unde omnis iste natus error sit voluptatem:</p>
+
+<ol>
+<li>Accusantium <strong>doloremque</strong> laudantium</li>
+<li>Totam rem <em>aperiam</em> eaque ipsa</li>
+<li>Quae ab illo <del>inventore</del> veritatis</li>
+<li>Et quasi <strong>architecto</strong> beatae vitae</li>
+</ol>
+
+<h2>Neque Porro Quisquam</h2>
+
+<p>Est qui dolorem ipsum quia <del>dolor</del> sit amet. Consectetur adipisci velit:</p>
+
+<ul>
+<li>Sed quia <em>non</em> numquam eius</li>
+<li><strong>Modi</strong> tempora incidunt ut labore</li>
+<li>Dolore <del>magnam</del> aliquam quaerat</li>
+</ul>
+
+<h3>Ut Enim Minima</h3>
+
+<p>Veniam quis nostrum <em>exercitationem</em> ullam corporis. Suscipit <strong>laboriosam</strong> nisi ut aliquid.</p>
+
+<h2>Quis Autem Vel</h2>
+
+<p>Eum iure reprehenderit qui in ea <del>voluptate</del> velit esse. Quam nihil molestiae <strong>consequatur</strong>!</p>
+
+<p>Fugiat quo <em>voluptas</em> nulla pariatur? 🌟</p>`
+
+    const result = converter.convert(input)
+    expect(result).toBe(expected)
+  })
 })
 
 
