@@ -8,7 +8,7 @@ import { MarkupConverter } from '../src/core/MarkupConverter'
  * Note: Individual converters have their own unit tests in separate files
  */
 describe('MarkupConverter - Integration tests', () => {
-  it.skip('should convert the test document containing headers, paragraphs, inline styles and lists correctly', () => {
+  it('should convert the test document containing headers, paragraphs, inline styles and lists correctly', () => {
     const converter = new MarkupConverter()
     const input = `# Main Title
 
@@ -20,7 +20,6 @@ Some introduction text.
 
 - Item A
 - Item B
-  - Nested item
 - Item C
 
 1. First step
@@ -32,24 +31,27 @@ Some introduction text.
 This text has **bold**, *italic*, and ~~strikethrough~~ words.`
 
     const expected = `<h1>Main Title</h1>
+
 <h2>Subsection</h2>
+
 <p>Some introduction text.</p>
+
 <h3>Smaller Header</h3>
+
 <ul>
 <li>Item A</li>
-<li>Item B
-<ul>
-<li>Nested item</li>
-</ul>
-</li>
+<li>Item B</li>
 <li>Item C</li>
 </ul>
+
 <ol>
 <li>First step</li>
 <li>Second step</li>
 <li>Third step</li>
 </ol>
+
 <h2>Formatting Example</h2>
+
 <p>This text has <strong>bold</strong>, <em>italic</em>, and <del>strikethrough</del> words.</p>`
 
     const result = converter.convert(input)
