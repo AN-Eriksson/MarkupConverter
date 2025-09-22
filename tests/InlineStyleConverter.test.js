@@ -44,5 +44,23 @@ describe('InlineStyleConverter', () => {
         expect(result).toBe('<strong>Hello 1DV610!</strong> This test checks that <em>all of</em> italic and <del>strikethrough</del> text is converted')
     })
 
+    it('should convert inline code text', () => {
+        const converter = new InlineStyleConverter()
+        const result = converter.convert('Use `console.log()` to debug your code')
+        expect(result).toBe('Use <code>console.log()</code> to debug your code')
+    })
+
+    it('should convert all instances of inline code in a line', () => {
+        const converter = new InlineStyleConverter()
+        const result = converter.convert('Use `console.log()` and `alert()` methods in `JavaScript`')
+        expect(result).toBe('Use <code>console.log()</code> and <code>alert()</code> methods in <code>JavaScript</code>')
+    })
+
+    it('should convert inline code with other inline styles', () => {
+        const converter = new InlineStyleConverter()
+        const result = converter.convert('This is **bold with `inline code`** and *italic with `more code`*')
+        expect(result).toBe('This is <strong>bold with <code>inline code</code></strong> and <em>italic with <code>more code</code></em>')
+    })
+
 
 })

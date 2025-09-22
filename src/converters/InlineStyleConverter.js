@@ -24,6 +24,10 @@ export class InlineStyleConverter extends AbstractConverter {
             line = this.#convertStrikethrough(line)
         }
 
+        if (line.includes('`')) {
+            line = this.#convertInlineCode(line)
+        }
+
         return line
     }
 
@@ -95,6 +99,30 @@ export class InlineStyleConverter extends AbstractConverter {
         }
 
         return resultingLine
+    }
+
+    #convertInlineCode(line) {
+        let resultingLine = line
+
+        while (resultingLine.includes('`')) {
+            const firstOccurance = resultingLine.indexOf('`')
+            const secondOccurrence = resultingLine.indexOf('`', firstOccurance + 1)
+
+            // If there is no second occurance, stop the loop.
+            if (secondOccurrence === -1) {
+                break
+            }
+
+            const textContent = resultingLine.substring(firstOccurance + 1, secondOccurrence)
+
+            const textBefore = resultingLine.substring(0, firstOccurance)
+            const textAfter = resultingLine.substring(secondOccurrence + 1)
+
+            resultingLine = textBefore + `<code>${textContent}</code>` + textAfter
+        }
+
+        return resultingLine
+
     }
 
 }

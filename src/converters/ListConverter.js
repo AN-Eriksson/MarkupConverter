@@ -54,6 +54,4 @@ export class ListConverter extends AbstractConverter {
         const joinedList = listItems.join('\n')
         return `<ol>\n${joinedList}\n</ol>`
     }
-
-
 }

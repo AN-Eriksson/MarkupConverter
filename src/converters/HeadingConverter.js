@@ -39,6 +39,5 @@ export class HeadingConverter extends AbstractConverter {
 
     #getHeadingText(line, headingLevel) {
         return line.substring(headingLevel + 1)
-
     }
 }
