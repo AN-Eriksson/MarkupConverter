@@ -7,7 +7,6 @@ export class ListConverter extends AbstractConverter {
         const taggedBlocks = textBlocks.map(block => {
 
             if (this.#isUnorderedList(block)) {
-                console.log(block)
                 return this.#convertUnorderedList(block)
             }
 
