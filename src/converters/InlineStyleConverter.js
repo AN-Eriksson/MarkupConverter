@@ -2,7 +2,16 @@ import { AbstractConverter } from "./AbstractConverter"
 
 export class InlineStyleConverter extends AbstractConverter {
 
-    convertLine(line) {
+    convert(inputText) {
+        const lines = inputText.split('\n')
+        const converted = lines.map(line => {
+            return this.#convertLine(line)
+        })
+
+        return converted.join('\n')
+    }
+
+    #convertLine(line) {
         if (line.includes('**')) {
             line = this.#convertBold(line)
         }

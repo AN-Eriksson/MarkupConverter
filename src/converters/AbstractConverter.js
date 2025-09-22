@@ -6,16 +6,7 @@ export class AbstractConverter {
         }
     }
 
-    convert(inputText) {
-        const lines = inputText.split('\n')
-        const converted = lines.map(line => {
-            return this.convertLine(line)
-        })
-
-        return converted.join('\n')
-    }
-
-    convertLine(line) {
-        throw new Error('convertLine must be implemented in subclasses')
+    convert() {
+        throw new Error('convert() must be implemented by subclass')
     }
 }
