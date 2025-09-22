@@ -61,6 +61,7 @@ console.log(html)
 - Convert bold text (**text**)
 - Convert italic text (*text*)
 - Convert strikethrough text (~~text~~)
+- Convert inline code (`code`)
 - Convert paragraphs (wrap plain text in `<p>` tags)
 - Select individual converters for specific use cases
 
@@ -78,6 +79,59 @@ import { HeadingConverter, InlineStyleConverter } from 'markup-converter'
 This modular approach allows you to:
 - Build custom conversion pipelines
 - Handle specific markdown features in isolation
+
+### Available Converters
+
+This library includes several specialized converters that can be used individually or together:
+
+### HeadingConverter
+Converts markdown headings to HTML heading tags.
+
+**Converts:**
+- `# Heading 1` → `<h1>Heading 1</h1>`
+- `## Heading 2` → `<h2>Heading 2</h2>`
+- `### Heading 3` → `<h3>Heading 3</h3>`
+
+### InlineStyleConverter
+Handles all inline text formatting within paragraphs and other content.
+
+**Converts:**
+- `**bold text**` → `<strong>bold text</strong>`
+- `*italic text*` → `<em>italic text</em>`
+- `~~strikethrough~~` → `<del>strikethrough</del>`
+- `` `inline code` `` → `<code>inline code</code>`
+
+### ListConverter
+Converts both ordered and unordered lists.
+
+**Converts:**
+```markdown
+- Item 1
+- Item 2
+- Item 3
+```
+→
+```html
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+```
+
+```markdown
+1. First item
+2. Second item
+3. Third item
+```
+→
+```html
+<ol>
+<li>First item</li>
+<li>Second item</li>
+<li>Third item</li>
+</ol>
+```
 
 ## API Reference
 
@@ -100,7 +154,7 @@ Converts markdown text to HTML.
 All converters extend `AbstractConverter` and implement the same interface:
 
 - `HeadingConverter` - Converts `# ## ###` to `<h1> <h2> <h3>`
-- `InlineStyleConverter` - Converts `**bold**`, `*italic*`, `~~strikethrough~~`
+- `InlineStyleConverter` - Converts `**bold**`, `*italic*`, `~~strikethrough~~`, `inline code`
 - `ParagraphConverter` - Wraps plain text in `<p>` tags
 
 ## Testing
@@ -117,5 +171,7 @@ npm run test:watch          # Run tests in watch mode
 # Run specific test types
 npm test -- tests/HeadingConverter.test.js         # Unit tests for headings
 npm test -- tests/InlineStyleConverter.test.js     # Unit tests for inline styles
+npm test -- tests/ParagraphConverter.test.js       # Unit tests for paragraphs
+npm test -- tests/ListConverter.test.js            # Unit tests for lists
 npm test -- tests/MarkupConverter.test.js          # Integration tests for full pipeline
 ```
