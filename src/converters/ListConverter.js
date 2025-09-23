@@ -1,7 +1,27 @@
 import { AbstractConverter } from "./AbstractConverter"
 
+/**
+ * Converts markdown lists to HTML list elements.
+ * 
+ * This converter processes both ordered and unordered lists
+ * by identifying list blocks and converting them to their corresponding HTML
+ * structures.
+ * 
+ * @extends AbstractConverter
+ */
 export class ListConverter extends AbstractConverter {
 
+    /**
+     * Converts markdown lists to HTML list elements.
+     * 
+     * Processes text blocks separated by double newlines, identifying and converting
+     * markdown list syntax to HTML. Supports both unordered lists (- item) and
+     * ordered lists (1. item). Non-list blocks are left unchanged.
+     * 
+     * @param {string} text - The input text containing markdown list syntax
+     * @returns {string} - Text with markdown lists converted to HTML list elements
+     * @override
+     */
     convert(text) {
         const textBlocks = text.split('\n\n')
         const taggedBlocks = textBlocks.map(block => {

@@ -1,6 +1,26 @@
 import { AbstractConverter } from "./AbstractConverter";
 
+/**
+ * Converts markdown headings to HTML heading tags.
+ * 
+ * This converter processes markdown heading syntax and converts
+ * them to their corresponding HTML heading tags. It supports
+ * heading levels 1 through 6 and preserves the heading text content.
+ * 
+ * @extends AbstractConverter
+ */
 export class HeadingConverter extends AbstractConverter {
+    /**
+     * Converts markdown headings to HTML heading tags.
+     * 
+     * Processes the input text line by line, identifying markdown heading syntax
+     * and converting it to HTML heading tags. Lines that are not headings are
+     * left unchanged.
+     * 
+     * @param {string} text - The input text containing markdown heading syntax
+     * @returns {string} - Text with markdown headings converted to HTML heading tags
+     * @override
+     */
     convert(text) {
         const lines = text.split('\n')
 
