@@ -1,7 +1,27 @@
 import { AbstractConverter } from "./AbstractConverter"
 
+/**
+ * Converts inline markdown formatting to HTML tags.
+ * 
+ * This converter processes inline text formatting such as bold, italic, strikethrough,
+ * and inline code. It works line-by-line to find markdown syntax and replace it with
+ * appropriate HTML tags while preserving the text content.
+ * 
+ * @extends AbstractConverter
+ */
 export class InlineStyleConverter extends AbstractConverter {
 
+    /**
+     * Converts inline markdown formatting to HTML tags.
+     * 
+     * Processes the input text line by line, converting markdown syntax for bold (**text**),
+     * italic (*text*), strikethrough (~~text~~), and inline code (`text`) to their
+     * corresponding HTML tags.
+     * 
+     * @param {string} inputText - The input text containing markdown inline formatting
+     * @returns {string} Text with markdown inline formatting converted to HTML tags
+     * @override
+     */
     convert(inputText) {
         const lines = inputText.split('\n')
         const converted = lines.map(line => {
@@ -13,116 +33,53 @@ export class InlineStyleConverter extends AbstractConverter {
 
     #convertLine(line) {
         if (line.includes('**')) {
-            line = this.#convertBold(line)
+            line = this.#convertInlineStyle('**', line)
         }
 
         if (line.includes('*')) {
-            line = this.#convertItalic(line)
+            line = this.#convertInlineStyle('*', line)
         }
 
         if (line.includes('~~')) {
-            line = this.#convertStrikethrough(line)
+            line = this.#convertInlineStyle('~~', line)
         }
 
         if (line.includes('`')) {
-            line = this.#convertInlineCode(line)
+            line = this.#convertInlineStyle('`', line)
         }
 
         return line
     }
 
-
-    #convertBold(line) {
+    #convertInlineStyle(tag, line) {
         let resultingLine = line
+        const tagLength = tag.length
 
-        while (resultingLine.includes('**')) {
-            const firstOccurance = resultingLine.indexOf('**')
-            const secondOccurrence = resultingLine.indexOf('**', firstOccurance + 2)
+        const htmlTagMap = {
+            '**': 'strong',
+            '*': 'em',
+            '~~': 'del',
+            '`': 'code'
+        }
 
-            // If there is no second occurance, stop the loop.
-            if (secondOccurrence === -1) {
+        const htmlTag = htmlTagMap[tag]
+
+        while (resultingLine.includes(tag)) {
+            const openingTag = resultingLine.indexOf(tag)
+            const closingTag = resultingLine.indexOf(tag, openingTag + tagLength)
+
+            if (closingTag === -1) {
                 break
             }
 
-            const textContent = resultingLine.substring(firstOccurance + 2, secondOccurrence)
+            const textContent = resultingLine.substring(openingTag + tagLength, closingTag)
 
-            const textBefore = resultingLine.substring(0, firstOccurance)
-            const textAfter = resultingLine.substring(secondOccurrence + 2)
+            const textBefore = resultingLine.substring(0, openingTag)
+            const textAfter = resultingLine.substring(closingTag + tagLength)
 
-            resultingLine = textBefore + `<strong>${textContent}</strong>` + textAfter
+            resultingLine = textBefore + `<${htmlTag}>${textContent}</${htmlTag}>` + textAfter
         }
 
         return resultingLine
     }
-
-    #convertItalic(line) {
-        let resultingLine = line
-
-        while (resultingLine.includes('*')) {
-            const firstOccurance = resultingLine.indexOf('*')
-            const secondOccurrence = resultingLine.indexOf('*', firstOccurance + 1)
-
-            // If there is no second occurance, stop the loop.
-            if (secondOccurrence === -1) {
-                break
-            }
-
-            const textContent = resultingLine.substring(firstOccurance + 1, secondOccurrence)
-
-            const textBefore = resultingLine.substring(0, firstOccurance)
-            const textAfter = resultingLine.substring(secondOccurrence + 1)
-
-            resultingLine = textBefore + `<em>${textContent}</em>` + textAfter
-        }
-
-        return resultingLine
-    }
-
-    #convertStrikethrough(line) {
-        let resultingLine = line
-
-        while (resultingLine.includes('~~')) {
-            const firstOccurance = resultingLine.indexOf('~~')
-            const secondOccurrence = resultingLine.indexOf('~~', firstOccurance + 2)
-
-            // If there is no second occurance, stop the loop.
-            if (secondOccurrence === -1) {
-                break
-            }
-
-            const textContent = resultingLine.substring(firstOccurance + 2, secondOccurrence)
-
-            const textBefore = resultingLine.substring(0, firstOccurance)
-            const textAfter = resultingLine.substring(secondOccurrence + 2)
-
-            resultingLine = textBefore + `<del>${textContent}</del>` + textAfter
-        }
-
-        return resultingLine
-    }
-
-    #convertInlineCode(line) {
-        let resultingLine = line
-
-        while (resultingLine.includes('`')) {
-            const firstOccurance = resultingLine.indexOf('`')
-            const secondOccurrence = resultingLine.indexOf('`', firstOccurance + 1)
-
-            // If there is no second occurance, stop the loop.
-            if (secondOccurrence === -1) {
-                break
-            }
-
-            const textContent = resultingLine.substring(firstOccurance + 1, secondOccurrence)
-
-            const textBefore = resultingLine.substring(0, firstOccurance)
-            const textAfter = resultingLine.substring(secondOccurrence + 1)
-
-            resultingLine = textBefore + `<code>${textContent}</code>` + textAfter
-        }
-
-        return resultingLine
-
-    }
-
 }
