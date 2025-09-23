@@ -36,7 +36,9 @@ src/
 ├── converters/
 │   ├── AbstractConverter.js    # Base class for all converters
 │   ├── HeadingConverter.js     # Handles # headings
-│   └── InlineStyleConverter.js # Handles **bold** and *italic*
+│   ├── InlineStyleConverter.js # Handles **bold**, *italic*, ~~strikethrough~~, `code`
+│   ├── ListConverter.js        # Handles - and 1. lists
+│   └── ParagraphConverter.js   # Wraps plain text in <p> tags
 tests/                          # Test files
 ```
 
@@ -44,7 +46,7 @@ tests/                          # Test files
 To add a new converter:
 
 1. Create `src/converters/YourConverter.js` extending `AbstractConverter`
-2. Implement the `convertLine()` method
+2. Implement the `convert()` method
 3. Add unit tests in `tests/YourConverter.test.js`
 4. Add the converter to `MarkupConverter.js` constructor
 5. Update integration tests

@@ -1,6 +1,6 @@
 # Markup Converter
 
-A JavaScript library for converting markup formats.
+A JavaScript library for converting markup to HTML.
 
 ## Installation
 ```bash
@@ -133,6 +133,22 @@ Converts both ordered and unordered lists.
 </ol>
 ```
 
+### ParagraphConverter
+Wraps plain text blocks in paragraph tags while preserving other HTML elements.
+
+**Converts:**
+```markdown
+This is a paragraph.
+
+This is another paragraph.
+```
+→
+```html
+<p>This is a paragraph.</p>
+
+<p>This is another paragraph.</p>
+```
+
 ## API Reference
 
 ### MarkupConverter
@@ -154,7 +170,8 @@ Converts markdown text to HTML.
 All converters extend `AbstractConverter` and implement the same interface:
 
 - `HeadingConverter` - Converts `# ## ###` to `<h1> <h2> <h3>`
-- `InlineStyleConverter` - Converts `**bold**`, `*italic*`, `~~strikethrough~~`, `inline code`
+- `InlineStyleConverter` - Converts `**bold**`, `*italic*`, `~~strikethrough~~`, `` `inline code` ``
+- `ListConverter` - Converts `- item` and `1. item` to `<ul>` and `<ol>`
 - `ParagraphConverter` - Wraps plain text in `<p>` tags
 
 ## Testing
