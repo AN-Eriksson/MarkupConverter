@@ -4,7 +4,7 @@ A JavaScript library for converting markup to HTML.
 
 ## Installation
 ```bash
-npm install markup-converter
+npm install @an-eriksson/markup-converter
 ```
 
 ### Using the Main Converter
