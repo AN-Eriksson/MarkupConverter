@@ -1,10 +1,10 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest'
 import { MarkupConverter } from '../src/core/MarkupConverter'
 
 /**
  * Integration tests for MarkupConverter
  * Tests the complete conversion pipeline with all converters working together
- * 
+ *
  * Note: Individual converters have their own unit tests in separate files
  */
 describe('MarkupConverter - Integration tests', () => {
@@ -57,7 +57,6 @@ This text has **bold**, *italic*, and ~~strikethrough~~ words.`
     const result = converter.convert(input)
     expect(result).toBe(expected)
   })
-
 
   it('should convert the test document containing headers, paragraphs, and inline styles correctly', () => {
     const converter = new MarkupConverter()
@@ -191,17 +190,3 @@ Fugiat quo *voluptas* nulla pariatur? 🌟`
     expect(result).toBe(expected)
   })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
