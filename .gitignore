@@ -2,8 +2,4 @@ node_modules/
 .DS_Store
 coverage/
 .env
-
-.TODO.txt
-classDiagram.mmd
-classDiagram.png
 Reflektion.md
