@@ -10,12 +10,9 @@ export class CodeBlockConverter extends AbstractConverter {
                 return block
             }
 
-            console.log('block:' + block)
-            
-            console.log(block.substring(3, block.length - 3))
+            const trimmedBlock = block.substring(3, block.length - 3)
 
-
-            return `${block}`
+            return `<pre><code>${trimmedBlock}</code></pre>`
         })
 
         return taggedBlocks.join('\n\n')
