@@ -37,7 +37,7 @@ export class MarkupConverter {
   convert(text) {
     let result = text
 
-    for (const [name, converter] of this.#converters) {
+    for (const converter of this.#converters.values()) {
       result = converter.convert(result)
     }
 
