@@ -1,3 +1,4 @@
+import { CodeBlockConverter } from '../converters/CodeBlockConverter'
 import { HeadingConverter } from '../converters/HeadingConverter'
 import { InlineStyleConverter } from '../converters/InlineStyleConverter'
 import { ListConverter } from '../converters/ListConverter'
@@ -16,6 +17,7 @@ export class MarkupConverter {
   constructor() {
     this.#converters = new Map([
       ['heading', new HeadingConverter()],
+      ['codeBlock', new CodeBlockConverter()],
       ['lists', new ListConverter()],
       ['paragraph', new ParagraphConverter()],
       ['inlineStyle', new InlineStyleConverter()]

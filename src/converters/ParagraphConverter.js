@@ -4,8 +4,8 @@ import { AbstractConverter } from './AbstractConverter'
  * Converts plain text blocks into HTML paragraphs while preserving existing HTML elements.
  *
  * This converter processes text by splitting it into blocks separated by double newlines,
- * then wraps non-HTML blocks in paragraph tags. It preserves headings and lists that
- * have already been converted to HTML by other converters.
+ * then wraps non-HTML blocks in paragraph tags. It preserves headings, lists and code blocks that
+ * have already been or will be converted to HTML by other converters.
  *
  * @extends AbstractConverter
  */
@@ -30,6 +30,10 @@ export class ParagraphConverter extends AbstractConverter {
         return block
       }
 
+      if (this.#isCodeBlock(block)) {
+        return block
+      }
+
       return `<p>${block}</p>`
     })
 
@@ -42,5 +46,9 @@ export class ParagraphConverter extends AbstractConverter {
 
   #isHeadingBlock(block) {
     return block.startsWith('<h') || block.startsWith('#')
+  }
+
+  #isCodeBlock(block) {
+    return block.startsWith('<pre>') || block.startsWith('```')
   }
 }

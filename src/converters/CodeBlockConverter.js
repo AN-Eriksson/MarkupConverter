@@ -29,15 +29,15 @@ export class CodeBlockConverter extends AbstractConverter {
         return block
       }
 
-      const trimmedBlock = block.substring(3, block.length - 3)
+      const textContent = block.substring(3, block.length - 3)
 
-      return `<pre><code>${trimmedBlock}</code></pre>`
+      return `<pre><code>${textContent}</code></pre>`
     })
 
     return taggedBlocks.join('\n\n')
   }
 
   #isCodeBlock(block) {
-    return block.startsWith('```')
+    return block && block.startsWith('```') && block.endsWith('```')
   }
 }
