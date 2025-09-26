@@ -76,7 +76,7 @@ const result = converter.convert(text)
     expect(result).toBe(expected)
   })
 
-  it.skip('should convert the test document containing headers, paragraphs, and inline styles correctly', () => {
+  it('should convert the test document containing headers, paragraphs, and inline styles correctly', () => {
     const converter = new MarkupConverter()
     const input = `# Main Title
 
@@ -110,7 +110,7 @@ This text has **bold**, *italic*, and ~~strikethrough~~ words.`
     expect(result).toBe(expected)
   })
 
-  it.skip('should convert a complete markdown document with all supported features', () => {
+  it('should convert a complete markdown document with all supported features', () => {
     const converter = new MarkupConverter()
     const input = `# Lorem Ipsum Dolor Sit Amet
 
