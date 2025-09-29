@@ -18,7 +18,7 @@ export class ParagraphConverter extends AbstractConverter {
    *
    * @override
    */
-  convert(text) {
+  _runConvert(text) {
     const textBlocks = text.split('\n\n')
 
     const taggedBlocks = textBlocks.map((block) => {

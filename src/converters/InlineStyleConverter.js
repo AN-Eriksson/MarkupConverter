@@ -21,7 +21,7 @@ export class InlineStyleConverter extends AbstractConverter {
    * @returns {string} Text with markdown inline formatting converted to HTML tags
    * @override
    */
-  convert(inputText) {
+  _runConvert(inputText) {
     const lines = inputText.split('\n')
     const converted = lines.map((line) => {
       return this.#convertLine(line)

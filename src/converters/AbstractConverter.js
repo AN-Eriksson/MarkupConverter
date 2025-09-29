@@ -17,14 +17,30 @@ export class AbstractConverter {
   }
 
   /**
-   * Converts input text using the specific converter's logic.
+   * Converts text using the specific converter implementation.
    *
+   * @param {string} text - The input text to convert
+   * @returns {string} - The converted text
+   * @throws {TypeError} - If text is not a string
+   */
+  convert(text) {
+    if (typeof text !== 'string') {
+      throw new TypeError(`Expected string, received ${typeof text}`)
+    }
+
+    return this._runConvert(text)
+  }
+
+  /**
+   * Converts input text using the specific converter's logic.
+   * Contains the actual conversion logic.
    * This method must be implemented by subclasses.
    *
    * @abstract
    * @throws {Error} - If not implemented by subclass
    */
-  convert() {
+  // eslint-disable-next-line no-unused-vars
+  _runConvert(text) {
     throw new Error('convert() must be implemented by subclass')
   }
 }

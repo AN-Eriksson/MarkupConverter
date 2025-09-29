@@ -21,7 +21,7 @@ export class ListConverter extends AbstractConverter {
    * @returns {string} - Text with markdown lists converted to HTML list elements
    * @override
    */
-  convert(text) {
+  _runConvert(text) {
     const textBlocks = text.split('\n\n')
     const taggedBlocks = textBlocks.map((block) => {
       if (this.#isUnorderedList(block)) {

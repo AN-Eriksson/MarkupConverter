@@ -29,7 +29,7 @@ Modulen har testats med en teststrategi som inkluderar både enhetstester för i
 
 <img src="testrapport-image.png" alt="Testresultat" width="800">
 
-- **Totalt antal tester**: 25 testfall fördelade på 7 filer
+- **Totalt antal tester**: 30 testfall fördelade på 7 filer
 - **Framgångsrika tester**: 100%
 - **Misslyckade tester**: 0
 - **Testtäckning**: Omfattar alla publika metoder

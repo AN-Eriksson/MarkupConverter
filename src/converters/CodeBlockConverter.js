@@ -21,7 +21,7 @@ export class CodeBlockConverter extends AbstractConverter {
    * @returns {string} -  Text with markdown code blocks converted to HTML elements
    * @override
    */
-  convert(text) {
+  _runConvert(text) {
     const textBlocks = text.split('\n\n')
 
     const taggedBlocks = textBlocks.map((block) => {

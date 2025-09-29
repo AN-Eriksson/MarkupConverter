@@ -21,7 +21,7 @@ export class HeadingConverter extends AbstractConverter {
    * @returns {string} - Text with markdown headings converted to HTML heading tags
    * @override
    */
-  convert(text) {
+  _runConvert(text) {
     const lines = text.split('\n')
 
     const convertedLines = lines.map((line) => {
