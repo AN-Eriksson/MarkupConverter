@@ -4,7 +4,7 @@
 
 Modulen har testats med en teststrategi som inkluderar både enhetstester för individuella konverterare och integrationstester för hela konverteringspipelinen. Alla tester körs med Vitest och kan utföras med kommandot `npm test`.
 
-<img src="testrapport-image2.png" alt="Exempeltest" width="600">
+<img src=".testrapport/testrapport-image2.png" alt="Exempeltest" width="600">
 
 *Exempel: ett enhetstest för ListConverter*
 
@@ -27,7 +27,7 @@ Modulen har testats med en teststrategi som inkluderar både enhetstester för i
 
 ## Testresultat sammanfattning
 
-<img src="testrapport-image.png" alt="Testresultat" width="800">
+<img src=".testrapport/testrapport-image.png" alt="Testresultat" width="800">
 
 - **Totalt antal tester**: 30 testfall fördelade på 7 filer
 - **Framgångsrika tester**: 100%

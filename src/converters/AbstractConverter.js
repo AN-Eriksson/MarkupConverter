@@ -41,6 +41,6 @@ export class AbstractConverter {
    */
   // eslint-disable-next-line no-unused-vars
   _runConvert(text) {
-    throw new Error('convert() must be implemented by subclass')
+    throw new Error('_runConvert(text) must be implemented by subclass')
   }
 }
