@@ -2,7 +2,11 @@
 
 ## Testöversikt
 
-Modulen har testats med en omfattande teststrategi som inkluderar både enhetstester för individuella konverterare och integrationstester för hela konverteringspipelinen. Alla tester körs med Vitest och kan utföras med kommandot `npm test`.
+Modulen har testats med en teststrategi som inkluderar både enhetstester för individuella konverterare och integrationstester för hela konverteringspipelinen. Alla tester körs med Vitest och kan utföras med kommandot `npm test`.
+
+<img src="testrapport-image2.png" alt="Exempeltest" width="600">
+
+*Exempel: ett enhetstest för ListConverter*
 
 ## Testresultat
 
@@ -23,7 +27,7 @@ Modulen har testats med en omfattande teststrategi som inkluderar både enhetste
 
 ## Testresultat sammanfattning
 
-![Testresultat](testrapport-image.png)
+<img src="testrapport-image.png" alt="Testresultat" width="800">
 
 - **Totalt antal tester**: 25 testfall fördelade på 7 filer
 - **Framgångsrika tester**: 100%

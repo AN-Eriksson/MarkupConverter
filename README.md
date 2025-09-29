@@ -106,6 +106,40 @@ console.log(html)
 - Convert paragraphs (wrap plain text in `<p>` tags)
 - Select individual converters for specific use cases
 
+## Missing Functionality / Future Enhancements
+
+While Markup Converter provides core markdown conversion capabilities, there are several features that are **not yet implemented**:
+
+### 📋 **Lists**
+- [ ] **Nested lists** - Currently only supports single-level lists
+- [ ] **Mixed list types** - Cannot mix ordered/unordered lists in same structure
+- [ ] **List items with multiple paragraphs** - Limited to single-line items
+
+### 🔗 **Links and Media**
+- [ ] **Links** - `[text](url)` syntax not supported
+- [ ] **Images** - `![alt](src)` syntax not supported
+
+### 📊 **Advanced Formatting**
+- [ ] **Tables** - Markdown table syntax not supported
+- [ ] **Blockquotes** - `>` syntax for quoted text
+- [ ] **Horizontal rules** - `---` or `***` syntax
+- [ ] **Line breaks** - `  ` (double space) for `<br>` tags
+
+### 🎨 **Styling and Extensions**
+- [ ] **HTML attributes** - Class names, IDs, data attributes
+
+### ⚙️ **Configuration**
+- [ ] **Custom converter options** - Configurable behavior per converter
+- [ ] **Output formatting** - Prettify output with indentation etc.
+
+### Workarounds
+
+For missing functionality, consider:
+- **Links/Images**: Use raw HTML in your markdown
+- **Tables**: Convert to HTML table markup manually  
+- **Advanced lists**: Structure as separate simple lists
+- **Blockquotes**: Use HTML `<blockquote>` tags directly
+
 ### Flexible Architecture
 You can use the complete `MarkupConverter` for full markdown processing, or import individual converters to handle only specific formatting:
 
