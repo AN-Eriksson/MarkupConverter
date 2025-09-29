@@ -1,4 +1,4 @@
-import { AbstractConverter } from './AbstractConverter'
+import { AbstractConverter } from './AbstractConverter.js'
 
 /**
  * Converts markdown code blocks to HTML pre and code elements.

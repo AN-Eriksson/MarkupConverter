@@ -1,4 +1,4 @@
-import { AbstractConverter } from './AbstractConverter'
+import { AbstractConverter } from './AbstractConverter.js'
 
 /**
  * Converts plain text blocks into HTML paragraphs while preserving existing HTML elements.

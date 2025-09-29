@@ -1,4 +1,4 @@
-import { AbstractConverter } from './AbstractConverter'
+import { AbstractConverter } from './AbstractConverter.js'
 
 /**
  * Converts inline markdown formatting to HTML tags.

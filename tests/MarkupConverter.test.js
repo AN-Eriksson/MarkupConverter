@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { MarkupConverter } from '../src/core/MarkupConverter'
+import { MarkupConverter } from '../src/core/MarkupConverter.js'
 
 /**
  * Integration tests for MarkupConverter

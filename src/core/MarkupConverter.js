@@ -1,8 +1,8 @@
-import { CodeBlockConverter } from '../converters/CodeBlockConverter'
-import { HeadingConverter } from '../converters/HeadingConverter'
-import { InlineStyleConverter } from '../converters/InlineStyleConverter'
-import { ListConverter } from '../converters/ListConverter'
-import { ParagraphConverter } from '../converters/ParagraphConverter'
+import { HeadingConverter } from '../converters/HeadingConverter.js'
+import { CodeBlockConverter } from '../converters/CodeBlockConverter.js'
+import { ListConverter } from '../converters/ListConverter.js'
+import { ParagraphConverter } from '../converters/ParagraphConverter.js'
+import { InlineStyleConverter } from '../converters/InlineStyleConverter.js'
 
 /**
  * Main markup converter that controls all individual converters.

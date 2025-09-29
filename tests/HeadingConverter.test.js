@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { HeadingConverter } from '../src/converters/HeadingConverter'
+import { HeadingConverter } from '../src/converters/HeadingConverter.js'
 
 describe('HeadingConverter', () => {
   it('should convert markdown heading to html heading', () => {

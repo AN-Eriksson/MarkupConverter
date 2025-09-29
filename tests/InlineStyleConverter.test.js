@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { InlineStyleConverter } from '../src/converters/InlineStyleConverter'
+import { InlineStyleConverter } from '../src/converters/InlineStyleConverter.js'
 
 describe('InlineStyleConverter', () => {
   it('should convert bold text', () => {
