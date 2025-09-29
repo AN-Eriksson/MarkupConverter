@@ -1,0 +1,12 @@
+tests/
+.github/
+.vscode/
+*.test.js
+.eslintrc.js
+vitest.config.js
+reflektion.md
+testrapport.md
+.reflektion/
+.readme/
+node_modules/
+.git/

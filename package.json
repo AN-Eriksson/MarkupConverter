@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "description": "A JavaScript library for converting markup formats",
+  "description": "A JavaScript library for converting Markdown to HTML",
   "keywords": [
     "markdown",
     "html",
