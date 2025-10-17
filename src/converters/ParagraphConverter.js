@@ -22,6 +22,10 @@ export class ParagraphConverter extends AbstractConverter {
     const textBlocks = text.split('\n\n')
 
     const taggedBlocks = textBlocks.map((block) => {
+      if (this.#isEmptyBlock(block)) {
+        return ''
+      }
+
       if (this.#isListBlock(block)) {
         return block
       }
@@ -38,6 +42,10 @@ export class ParagraphConverter extends AbstractConverter {
     })
 
     return taggedBlocks.join('\n\n')
+  }
+
+  #isEmptyBlock(block) {
+    return block.trim() === ''
   }
 
   #isListBlock(block) {

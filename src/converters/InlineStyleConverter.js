@@ -64,25 +64,71 @@ export class InlineStyleConverter extends AbstractConverter {
     const htmlTag = htmlTagMap[tag]
 
     while (resultingLine.includes(tag)) {
-      const openingTag = resultingLine.indexOf(tag)
-      const closingTag = resultingLine.indexOf(tag, openingTag + tagLength)
+      const openingTagIndex = this.#findOpeningTagIndex(resultingLine, tag)
+      const closingTagIndex = this.#findClosingTagIndex(
+        resultingLine,
+        tag,
+        openingTagIndex,
+        tagLength
+      )
 
-      if (closingTag === -1) {
+      if (this.#hasNoClosingTag(closingTagIndex)) {
         break
       }
 
-      const textContent = resultingLine.substring(
-        openingTag + tagLength,
-        closingTag
+      const textContent = this.#extractTextContent(
+        resultingLine,
+        openingTagIndex,
+        tagLength,
+        closingTagIndex
       )
 
-      const textBefore = resultingLine.substring(0, openingTag)
-      const textAfter = resultingLine.substring(closingTag + tagLength)
+      const textBefore = this.#extractTextBeforeElement(
+        resultingLine,
+        openingTagIndex
+      )
+      const textAfter = this.#extractTextAfterElement(
+        resultingLine,
+        closingTagIndex,
+        tagLength
+      )
 
-      resultingLine =
-        textBefore + `<${htmlTag}>${textContent}</${htmlTag}>` + textAfter
+      resultingLine = this.#assembleResultingLine(
+        textBefore,
+        htmlTag,
+        textContent,
+        textAfter
+      )
     }
 
     return resultingLine
+  }
+
+  #findOpeningTagIndex(resultingLine, tag) {
+    return resultingLine.indexOf(tag)
+  }
+
+  #findClosingTagIndex(resultingLine, tag, openingTagIndex, tagLength) {
+    return resultingLine.indexOf(tag, openingTagIndex + tagLength)
+  }
+
+  #hasNoClosingTag(closingTagIndex) {
+    return closingTagIndex === -1
+  }
+
+  #extractTextContent(resultingLine, openingTag, tagLength, closingTag) {
+    return resultingLine.substring(openingTag + tagLength, closingTag)
+  }
+
+  #extractTextBeforeElement(resultingLine, openingTag) {
+    return resultingLine.substring(0, openingTag)
+  }
+
+  #extractTextAfterElement(resultingLine, closingTag, tagLength) {
+    return resultingLine.substring(closingTag + tagLength)
+  }
+
+  #assembleResultingLine(textBefore, htmlTag, textContent, textAfter) {
+    return textBefore + `<${htmlTag}>${textContent}</${htmlTag}>` + textAfter
   }
 }
