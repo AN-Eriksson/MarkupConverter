@@ -1,6 +1,6 @@
 {
   "name": "@an-eriksson/markup-converter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "index.js",
   "description": "A JavaScript library for converting Markdown to HTML",
