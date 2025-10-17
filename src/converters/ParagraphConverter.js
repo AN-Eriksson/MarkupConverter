@@ -23,7 +23,7 @@ export class ParagraphConverter extends AbstractConverter {
 
     const taggedBlocks = textBlocks.map((block) => {
       if (this.#isEmptyBlock(block)) {
-        return ''
+        return block
       }
 
       if (this.#isListBlock(block)) {
